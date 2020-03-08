@@ -1,0 +1,23 @@
+class:
+  class_name: 友情链接
+  link_list:
+    1:
+      name: DragonBaby's Blog
+      link: http://www.dragonbaby308.com/
+      avatar: https://dragonbaby308.oss-cn-hangzhou.aliyuncs.com/hexo/db3.png
+      descr: 苏宁不破产不改网名
+    2:
+      name: JerryC
+      link: https://jerryc.me/
+      avatar: https://jerryc.me/img/avatar.png
+      descr: 今日事,今日毕
+    3:
+      name: jackey
+      link: https://hcj123123.oschina.io/
+      avatar: https://y.gtimg.cn/music/photo_new/T002R300x300M000002qD7gF3fW0JL_1.jpg?max_age=2592000
+      descr: 来一杯香醇可口的macchiato咖啡
+    4:
+      name: AomanHao
+      link: http://www.aomanhao.top
+      avatar: http://www.aomanhao.top/images/Avatar.jpg
+      descr: 图像处理，优化世界

@@ -14,6 +14,7 @@ menu:
     - Movie || /movies/ || fa fa-film
   友链: /link/ || fa fa-link
   关于: /about/ || fa fa-heart
+
 # Favicon
 # ---------------
 favicon: /img/favicon.ico
@@ -51,8 +52,8 @@ copy:
 #   icon: link
 # ---------------
 social:
-  fa fa-github: https://github.com/dakucom
-  fa fa-envelope: mailto:da_kuzai@163.com
+  fa fa-github: https://github.com/jerryc127
+  fa fa-envelope: mailto:xxxxxxxx@gmail.com
   fa fa-rss: /atom.xml
 
 ####    search    ####
@@ -278,24 +279,24 @@ qihu_site_verification:
 
 # 友情鏈接界面設置
 Flink:
-  headline: 友情鏈接
-  info_headline: 我的Blog資料
-  name: Blog 名字： JerryC
-  address: Blog 地址： https://jerryc.me/
+  headline: 友情链接
+  info_headline: 我的Blog资料
+  name: Blog 名字： Dakuzai
+  address: Blog 地址： https://dakuzai.ml/
   avatar: Blog 頭像： https://jerryc.me/img/avatar.png
   info: Blog 簡介： 今日事,今日畢
-  comment: 如果需要交換友鏈,請留言
+  comment: 我会定期清理无效友链,如果需要交換友鏈,請留言
 
 # 打賞按鈕
 reward:
   enable: true
   QR_code:
     - itemlist:
-        img: /img/wechat.jpg
+        img: https://wx4.sinaimg.cn/mw690/005DJQmOgy1gcj94ao98tj30u014qq7u.jpg
         text: 微信
     - itemlist:
-        img: /img/alipay.jpg
-        text: 支付寶
+        img: https://wx3.sinaimg.cn/mw690/005DJQmOgy1gcj945w5mgj30p011itct.jpg
+        text: 支付宝
 
 # 推薦文章
 related_post:
