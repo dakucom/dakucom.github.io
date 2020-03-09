@@ -93,6 +93,21 @@ include:
 exclude:
 ignore:
 
+# 爬取豆瓣主页
+douban:
+  user: 213216346
+  builtin: true
+  book:
+    title: 书中的笑，现实中的悲
+    quote: 始终保持看客的身份
+  movie:
+    title: 那些年，我们追过的电影
+    quote: 现实与各式各样的色彩碰撞
+  game:
+    title: 'This is my game title'
+    quote: 'This is my game quote'
+  timeout: 10000 
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
