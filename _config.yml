@@ -95,6 +95,12 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: Butterfly
 
+# Algolia Search API Key 搜索系统
+algolia:
+  applicationID: 4AT4R5ZCV2
+  apiKey: 098ff7210e06c34118e7de1f85998c14
+  indexName: dakuzai
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
