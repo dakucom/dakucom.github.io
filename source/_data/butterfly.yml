@@ -252,7 +252,7 @@ ICP:
 
 ####   Analysis    ####
 # ---------------
-baidu_analytics:
+baidu_analytics: 0693d43f7861b611d1366ccedcdc43f5
 
 # Google Analytics
 google_analytics:
@@ -269,7 +269,7 @@ google_adsense:
   client:
   enable_page_level_ads: true
 
-####    站長驗證    ####
+####    网站驗證    ####
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
 google_site_verification:
