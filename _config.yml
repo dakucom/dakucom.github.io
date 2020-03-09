@@ -103,10 +103,14 @@ douban:
   movie:
     title: 那些年，我们追过的电影
     quote: 现实与各式各样的色彩碰撞
-  game:
-    title: 'This is my game title'
-    quote: 'This is my game quote'
+#  game:
+#    title: 'This is my game title'
+#    quote: 'This is my game quote'
   timeout: 10000 
+
+# 音乐hexo-tag-aplayer 插件
+aplayer:
+  meting: true
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
