@@ -357,7 +357,7 @@ tag_ui: # 留空或index
 background:
 
 # footer是否顯示圖片背景(與top_img一致)
-footer_bg: false
+footer_bg: true
 
 # 背景特效
 # 避免卡頓，建議只開啓一個
@@ -388,9 +388,11 @@ canvas_nest:
 
 # 打字效果
 activate_power_mode:
-  enable: false
-  colorful: true # 冒光特效
-  shake: true # 抖動特效
+  enable: true
+  # 冒光特效
+  colorful: true 
+  # 抖動特效
+  shake: true 
 
 # 鼠標點擊效果
 # 避免卡頓，建議只開啓一個
