@@ -1,6 +1,7 @@
 ---
-title: photos
+title: 记录生活，留下痕迹
 date: 2020-03-09 19:32:51
+type: "photos"
 ---
 
 {% gallery %}
