@@ -2,6 +2,7 @@
 title: 记录生活，留下痕迹
 date: 2020-03-09 19:32:51
 type: "photos"
+top_img: https://tvax3.sinaimg.cn/large/005DJQmOgy1gcoja75z3xj31hc0xc149.jpg
 ---
 
 {% gallery %}
