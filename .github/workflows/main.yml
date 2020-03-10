@@ -38,13 +38,17 @@ jobs:
         run: |
           npm install
 
-      - name: 部署博客
+      - name: 发布
         run: |
           hexo clean && hexo g && hexo douban
-          cd ./public
-          git init
           git config --global user.name "${{secrets.GIT_NAME}}"
           git config --global user.email "${{secrets.GIT_EMAIL}}"
+          git clone https://${GH_REF} .deploy_git
+          cd .deploy_git
+          git checkout backup
+          cd ../
+          mv .deploy_git/.git/ ./public/
+          cd ./public/
           git add .
-          git commit -m "Update"
-          git push --force --quiet "https://${{secrets.GH_TOKEN}}@${{secrets.GH_REF}}" master:backup
+          git commit -m "CI built at `date +"%Y-%m-%d %H:%M:%S"`"
+          git push --force --quiet "https://${{GH_TOKEN}}@${{GH_REF}}" master:backup
