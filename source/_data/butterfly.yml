@@ -102,9 +102,9 @@ katex:
   per_page: false
   hide_scrollbar: true
 
-# Post info settings
+# Post info settings 头像
 # ---------------
-avatar: https://tva4.sinaimg.cn/large/005DJQmOgy1gcjfp9i8edj34mo334e4d.jpg
+avatar: https://tvax1.sinaimg.cn/large/005DJQmOgy1gcoo2riiunj30e80e83zx.jpg
 
 # the banner image of index
 index_img: https://tva2.sinaimg.cn/large/005DJQmOgy1gcok7vhcuvj31hc0u04ab.jpg
@@ -294,7 +294,7 @@ Flink:
   info_headline: 我的Blog资料
   name: Blog 名字： Dakuzai
   address: Blog 地址： https://dakuzai.ml/
-  avatar: Blog 头像： https://tva4.sinaimg.cn/large/005DJQmOgy1gcjfp9i8edj34mo334e4d.jpg
+  avatar: Blog 头像： https://tvax1.sinaimg.cn/large/005DJQmOgy1gcoo2riiunj30e80e83zx.jpg
   info: Blog 简介： 智者一切求自己，愚者一切求他人。
   comment: 我会定期清理无效友链,如果需要交換友链,请留言
 
@@ -303,10 +303,10 @@ reward:
   enable: true
   QR_code:
     - itemlist:
-        img: https://wx4.sinaimg.cn/mw690/005DJQmOgy1gcj94ao98tj30u014qq7u.jpg
+        img: https://tvax1.sinaimg.cn/large/005DJQmOgy1gcooav8r6pj30hs0himz1.jpg
         text: 微信
     - itemlist:
-        img: https://wx3.sinaimg.cn/mw690/005DJQmOgy1gcj945w5mgj30p011itct.jpg
+        img: https://tva4.sinaimg.cn/large/005DJQmOgy1gcoob41e36j30e80e875v.jpg
         text: 支付宝
 
 # 推薦文章
