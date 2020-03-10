@@ -43,7 +43,7 @@ jobs:
           hexo clean && hexo g && hexo douban
           git config --global user.name "${{secrets.GIT_NAME}}"
           git config --global user.email "${{secrets.GIT_EMAIL}}"
-          git clone https://${GH_REF} .deploy_git
+          git clone https://${secrets.GH_REF} .deploy_git
           cd .deploy_git
           git checkout backup
           cd ../
@@ -51,4 +51,4 @@ jobs:
           cd ./public/
           git add .
           git commit -m "CI built at `date +"%Y-%m-%d %H:%M:%S"`"
-          git push --force --quiet "https://${{GH_TOKEN}}@${{GH_REF}}" master:backup
+          git push --force --quiet "https://${{secrets.GH_TOKEN}}@${{secrets.GH_REF}}" master:backup
