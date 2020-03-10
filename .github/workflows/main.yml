@@ -46,5 +46,5 @@ jobs:
       - name: 部署博客
         run: |
           rm -rf .deploy_git
-          hexo clean && hexo g && hexo douban && gulp
+          hexo clean && hexo g && hexo douban
           rm ~/.ssh/id_rsa
