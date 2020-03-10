@@ -43,8 +43,8 @@ jobs:
           hexo clean && hexo g && hexo douban && hexo deploy
           cd ./public
           git init
-          git config user.name "${{secrets.GIT_NAME}}"
-          git config user.email "${{secrets.GIT_EMAIL}}"
+          git config --global user.name "${{secrets.GIT_NAME}}"
+          git config --global user.email "${{secrets.GIT_EMAIL}}"
           git add .
           git commit -m "Update"
           git push --force --quiet "https://${{secrets.HEXO_DELOY_KEY}}@${{secrets.GH_REF}}" master:backup
