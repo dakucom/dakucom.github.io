@@ -1,7 +1,11 @@
 name: 自动部署 Hexo
 
-#on: [push]
-
+# master branch on push, auto run
+on: 
+  push:
+    branches:
+      - backup
+      
 jobs:
   build:
     runs-on: ubuntu-latest
