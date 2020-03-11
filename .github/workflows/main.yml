@@ -4,46 +4,37 @@ on: # 触发条件
   push:
     branches:
       - backup 
-
+      
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
+  build: # 一项叫做build的任务
 
+    runs-on: ubuntu-latest # 在最新版的Ubuntu系统下运行
+    
     steps:
-      - name: 开始运行
-        uses: actions/checkout@v1
-
-      - name: 设置 Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: 配置 Git 环境
-        env:
-          ACTION_DEPLOY_KEY: ${{secrets.HEXO_KEY}}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$HEXO_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.name "dakuzai"
-          git config --global user.email "da_kuzai@163.com"
-
-      - name: 安装 Hexo CI
-        run: |
-          export TZ='Asia/Shanghai'
-          npm i -g hexo-cli
-          npm i
-
-      - name: 安装插件
-        run: |
-          npm install hexo-cli -g
-          npm install
-
-      - name: 部署博客
-        run: |
-          hexo clean && hexo g && hexo douban && hexo deploy
-          rm ~/.ssh/id_rsa
+    - name: Checkout 
+      uses: actions/checkout@v1 
+      
+    - name: Use Node.js 10.x 
+      uses: actions/setup-node@v1 
+      with:
+        node-version: "10.x"
+    
+    - name: Setup Hexo env
+      env:
+        ACTION_DEPLOY_KEY: ${{ secrets. HEXO_DEPLOY_PRIVATE_KEY }}
+      run: |
+        # set up private key for deploy
+        mkdir -p ~/.ssh/
+        echo "$ HEXO_DEPLOY_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa 
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        # set git infomation
+        git config --global user.name 'dakuzai' 
+        git config --global user.email 'da_kuzai@163.com'
+        # install dependencies
+        npm i -g hexo-cli
+        npm i
+  
+    - name: Deploy
+      run: |
+        hexo generate && hexo douban && hexo deploy 
