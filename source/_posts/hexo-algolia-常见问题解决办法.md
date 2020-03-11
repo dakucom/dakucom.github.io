@@ -5,6 +5,7 @@ tags: hexo
 categories: 
     - hexo
     - erro
+cover: https://tvax2.sinaimg.cn/large/005DJQmOgy1gcq02zbjezj31hc0xcad3.jpg
 ---
 
 # 报错: Please set an HEXO_ALGOLIA_INDEXING_KEY environment variable to enable content indexing.

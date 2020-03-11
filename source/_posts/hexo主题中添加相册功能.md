@@ -3,7 +3,7 @@ title: hexo主题中添加相册功能
 date: 2020-03-10 20:32:46
 tags: hexo
 categories: hexo
-top_img: https://tva3.sinaimg.cn/large/005DJQmOgy1gcp4k92h66j32yo1o01ky.jpg
+cover: https://tva3.sinaimg.cn/large/005DJQmOgy1gcp4k92h66j32yo1o01ky.jpg
 ---
 
 # 新建一个页面

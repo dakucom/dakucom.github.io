@@ -1,6 +1,6 @@
 name: Hexo deployer 
 
-on: # 触发条件
+on:
   push:
     branches:
       - backup 
