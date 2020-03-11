@@ -18,6 +18,7 @@ cover: https://tvax1.sinaimg.cn/large/005DJQmOgy1gcojzpqe0mj31hc0u04qp.jpg
 # 并发和并行
 + 并发：多个线程操作同一个资源，交替执行的过程
 + 并行：多个线程同时执行
+
 # 线程的几种状态
 ***6种状态***
 1. NEW (新建)
