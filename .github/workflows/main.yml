@@ -1,0 +1,49 @@
+name: Hexo deployer 
+
+on: # 触发条件
+  push:
+    branches:
+      - backup 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: 开始运行
+        uses: actions/checkout@v1
+
+      - name: 设置 Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 配置 Git 环境
+        env:
+          ACTION_DEPLOY_KEY: ${{secrets.HEXO_KEY}}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$HEXO_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name "dakuzai"
+          git config --global user.email "da_kuzai@163.com"
+
+      - name: 安装 Hexo CI
+        run: |
+          export TZ='Asia/Shanghai'
+          npm i -g hexo-cli
+          npm i
+
+      - name: 安装插件
+        run: |
+          npm install hexo-cli -g
+          npm install
+
+      - name: 部署博客
+        run: |
+          hexo clean && hexo g && hexo douban && hexo deploy
+          rm ~/.ssh/id_rsa
