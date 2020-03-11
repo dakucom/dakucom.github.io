@@ -36,7 +36,7 @@ jobs:
          HEXO_DELOY_KEY: ${{ secrets. HEXO_DELOY_KEY }}
       run: |
         mkdir -p ~/.ssh/
-        echo "$ HEXO_DELOY_KEY" > ~/.ssh/key_backup/id_rsa 
+        echo "$ HEXO_DELOY_KEY" > ~/.ssh/id_rsa 
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         
@@ -48,3 +48,4 @@ jobs:
       run: |
         rm -rf .deploy_git
         hexo g && hexo douban && hexo deploy
+        rm ~/.ssh/id_rsa
