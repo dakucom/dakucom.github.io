@@ -12,17 +12,17 @@ cover: https://tvax2.sinaimg.cn/large/005DJQmOgy1gcr0zqk5j0j31hc0u0wlw.jpg
 
 ***小套路：线程操纵资源类***
 
-# Sychonized方法和Sychonized块
+# Synchronized方法和Synchronized块
 + 笔记：
 + 代码实现：
 ```java
 /**
  * @program: demo
- * @description: sychonized 锁创建卖票简单程序
+ * @description: synchronized 锁创建卖票简单程序
  * @author: dakuzai
  * @create: 2020-03-12 10:56
  */
-public class SychonizedTest {
+public class SynchronizedTest {
     public static void main(String[] args) {
         //新建资源类
         Ticket ticket = new Ticket();
@@ -114,14 +114,14 @@ class Ticket {
 + ***公平锁***
 顾名思义就是公平，☞线程不可插队
 
-# Sychonized和lock的区别
-1. Sychonized是一个关键字，Lock是一个对象；
+# Synchronized和lock的区别
+1. Synchronized是一个关键字，Lock是一个对象；
 2. Sychonized无法尝试获取锁（A线程获得锁后如果阻塞，B线程就会一直等待），Lock锁可以尝试
 获取锁（tryLock方法）；
 ![tryLock方法](https://tva4.sinaimg.cn/large/005DJQmOgy1gcr0pxtukpj30ia036gmg.jpg)
 
-3. Sychonized会自动释放锁（A线程结束，B线程如果异常了，也会释放锁），lock锁必须手动释放锁（unlock），否则就会死锁！
-4. Sychonized可重复锁，一定是非公平的，但是Lock锁可以通过参数设置为公平锁；
+3. Synchronized会自动释放锁（A线程结束，B线程如果异常了，也会释放锁），lock锁必须手动释放锁（unlock），否则就会死锁！
+4. Synchronized可重复锁，一定是非公平的，但是Lock锁可以通过参数设置为公平锁；
 ![](https://tva2.sinaimg.cn/large/005DJQmOgy1gcr0uxvfogj30n1072gq5.jpg)
-5. Sychonized适合在代码量比较少的同步问题，Lock适合在代码量特别大的时候，可以做到精准控制。
+5. Synchronized适合在代码量比较少的同步问题，Lock适合在代码量特别大的时候，可以做到精准控制。
 
