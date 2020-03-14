@@ -34,8 +34,6 @@ Java是跨平台的，JVM是运行在操作系统之上的。
 2. 用户自己定义的加载器
     + ClassLoader，只需要继承这个抽象类即可，自定义自己的类加载器
 ```java
-package com.dakuzai.demo.classloaderDemo;
- 
 public class classLoaderTest2 {
     public static void main(String[] args) {
         Object o = new Object(); // jdk 自带的,类的鼻祖
