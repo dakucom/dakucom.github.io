@@ -143,7 +143,163 @@ public class Springboot01HelloworldApplication {
         ```
         >AutoConﬁgurationImportSelector:自动配置导入选择器
         ![Snipaste_2020-03-15_18-02-38](https://tvax1.sinaimg.cn/large/005DJQmOgy1gcurq6dnpyj30vt0kzjt5.jpg)
-        
+
         >在加载的时候读取配置，返回具体的结果，但是有没有生效，我们并不知道！
         ![Snipaste_2020-03-15_18-33-22](https://tva3.sinaimg.cn/large/005DJQmOgy1gcusm3mgv7j30jn0ezweq.jpg)
-    
++ **SpringApplication**
+```java
+public SpringApplication(ResourceLoader resourceLoader, Class<?>...
+primarySources) {
+// 1、推断当前引用的类型，是否是Web应用
+  this.webApplicationType = WebApplicationType.deduceFromClasspath();
+  // 2、加载初始化器
+  setInitializers((Collection)
+getSpringFactoriesInstances(ApplicationContextInitializer.class));
+  // 3、设置监听器
+  setListeners((Collection)
+getSpringFactoriesInstances(ApplicationListener.class));
+  // 4、推断 mian方法
+  this.mainApplicationClass = deduceMainApplicationClass();
+}
+```
+作用：
+1. 推断当前引用的类型，是否为web应用
+2. 加载初始化器
+3. 设置监听器
+4. 推断 mian方法
++ Run方法
+```java
+public ConfigurableApplicationContext run(String... args) {
+  StopWatch stopWatch = new StopWatch();
+  stopWatch.start();
+  ConfigurableApplicationContext context = null;
+  Collection<SpringBootExceptionReporter> exceptionReporters = new ArrayList<>
+();
+  configureHeadlessProperty();
+  // 1、监听器启动
+  SpringApplicationRunListeners listeners = getRunListeners(args);
+  listeners.starting();
+  try {
+    ApplicationArguments applicationArguments = new
+DefaultApplicationArguments(args);
+    // 初始化环境配置
+    ConfigurableEnvironment environment = prepareEnvironment(listeners,
+applicationArguments);
+    configureIgnoreBeanInfo(environment);
+    // 打印 Banner
+    Banner printedBanner = printBanner(environment);
+    // 创建上下文
+    context = createApplicationContext();
+    exceptionReporters =
+getSpringFactoriesInstances(SpringBootExceptionReporter.class,
+                            new Class[] {
+ConfigurableApplicationContext.class }, context);
+    prepareContext(context, environment, listeners, applicationArguments,
+printedBanner);
+    refreshContext(context);
+    afterRefresh(context, applicationArguments);
+    stopWatch.stop();
+    if (this.logStartupInfo) {
+      new
+StartupInfoLogger(this.mainApplicationClass).logStarted(getApplicationLog(),
+stopWatch);
+   }
+    listeners.started(context);
+    callRunners(context, applicationArguments);
+ }
+  catch (Throwable ex) {
+    handleRunFailure(context, ex, exceptionReporters, listeners);
+    throw new IllegalStateException(ex);
+ }
+  try {
+    listeners.running(context);
+ }
+  catch (Throwable ex) {
+    handleRunFailure(context, ex, exceptionReporters, null);
+    throw new IllegalStateException(ex);
+ }
+  return context;
+}
+```
+Run方法思维参考图（特别感谢“狂神说”公众号）：
+![run方法思维参考图](https://tva1.sinaimg.cn/large/005DJQmOgy1gcutwrd2juj30ls0k60xv.jpg)
++ 注入配置文件(@ConfigurationProperties)
+    ```java
+    /**
+    * @ConfigurationProperties
+    * 作用：
+    * 1、绑定配置文件中的对象
+    * 2、将对象的属性值和配置文件的值一一对应，然后注入
+    * 3、这是一种批量注入的方式，更加快捷和方便，推荐使用
+    *
+    * 思想：
+    * 我们编写的配置文件如果存在值，就使用配置文件中的值
+    * 如果不存在，就是默认值或者null
+    */
+    ```
+    + 自动配置原理
+    [官方文档](https://docs.spring.io/spring-boot/docs/2.1.9.RELEASE/reference/htmlsingle/#common-application-properties)
+        + @ConditionalOnXX 条件判断注解，通过条件来判断这个类是否生效！
+        ![ConditionalOnXX](https://tva1.sinaimg.cn/large/005DJQmOgy1gcuu6y2b9tj30w20jw7bl.jpg)
+        + 
+        ```java
+        // Configuration 表示这是一个配置类，和以前编写的配置文件一样！
+        @Configuration(proxyBeanMethods = false)
+        // 指定配置文件，HttpProperties 对应我们编写的配置文件，假设配置文件中有就有配置文件的，没有
+        就用默认值
+        @EnableConfigurationProperties(HttpProperties.class)
+        // @ConditionalOnXX Spring底层注解；
+        @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+        // 如果 CharacterEncodingFilter 这个类，这个配置类才生效！
+        @ConditionalOnClass(CharacterEncodingFilter.class)
+        @ConditionalOnProperty(prefix = "spring.http.encoding", value = "enabled",
+        matchIfMissing = true)
+        public class HttpEncodingAutoConfiguration {
+            // 注入绑定 HttpProperties 配置文件
+            private final HttpProperties.Encoding properties;
+            public HttpEncodingAutoConfiguration(HttpProperties properties) {
+                this.properties = properties.getEncoding();
+        }
+        // 注入对应的bean
+        // 如果自己配置了配置文件，就会注入到SpringBoot自动帮我们配置的bean中！
+        // 注册bean的时候，SpringBoot自动帮我们关联了 HttpProperties
+        // 我们编写的配置就可以直接生效！
+        @Bean
+        @ConditionalOnMissingBean
+        public CharacterEncodingFilter characterEncodingFilter() {
+        CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
+        filter.setEncoding(this.properties.getCharset().name());
+            filter.setForceRequestEncoding(this.properties.shouldForce(Type.REQUEST));
+            filter.setForceResponseEncoding(this.properties.shouldForce(Type.RESPONSE));
+            return filter;
+        }
+        @Bean
+        public LocaleCharsetMappingsCustomizer localeCharsetMappingsCustomizer() {
+            return new LocaleCharsetMappingsCustomizer(this.properties);
+        }
+        private static class LocaleCharsetMappingsCustomizer
+        implements
+        WebServerFactoryCustomizer<ConfigurableServletWebServerFactory>, Ordered {
+        private final HttpProperties.Encoding properties;
+        LocaleCharsetMappingsCustomizer(HttpProperties.Encoding properties) {
+            this.properties = properties;
+        }
+        @Override
+        public void customize(ConfigurableServletWebServerFactory factory) {
+        if (this.properties.getMapping() != null) {
+                factory.setLocaleCharsetMappings(this.properties.getMapping());
+            }
+        }
+        @Override
+        public int getOrder() {
+                    return 0;
+                }
+            }
+        }
+        ```
+        > 小结：
+        1. SpringBoot启动会加载大量的自动配置类！spring.factories
+        2. 我们就需要判断我们的类是否存在在这里面，如果不存在我们需要手动导入，如果存在导入启动器即可！
+        3. 我们的配置文件之所以可以自动配置生效：xxxxAutoConfiguation ： 自动配置类，根据条件 @ConditionalOnXX 判断是否生效；如果生效则成功注入bean；
+        xxxxProperties：封装配置文件中的相关属性；
+        4. 给容器中自动配置类配置属性的时候，会通过 xxxxProperties 类来获取某用户配置文件中的属性，如果没有则使用默认的，如果有则使用 自动配置的！
