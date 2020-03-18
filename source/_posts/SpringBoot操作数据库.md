@@ -69,7 +69,7 @@ Spring 的一个子项目。用于简化数据库访问。其主要目标是使�
     + DataSourceProperties 配置文件绑定！
 + 测试
 ![HikariDataSource](https://tva4.sinaimg.cn/large/005DJQmOgy1gcxvlwgj2ej30vf0hj7lh.jpg)
-+ CRUD：JdbcTemplate
++ **CRUD：JdbcTemplate**
 使用xxxTemplate引擎模板，真香！
 ![CRUD](https://tvax2.sinaimg.cn/large/005DJQmOgy1gcxwy6uqknj30sx0ibto8.jpg)
 + HikariDataSource和Druid的区别
@@ -77,14 +77,14 @@ Spring 的一个子项目。用于简化数据库访问。其主要目标是使�
     HikariDataSource 号称当前 Java Web速度最快的数据源，和 Druid相比，效率会更高一点！
     不同的数据源拥有不同的配置；
 # 集成Druid
-+ 简介
++ **简介**
 Java程序很大的一部分都是要操作数据库的，为了提高操作数据库的性能，所以一般会使用连接池！
     + Druid 是阿里巴巴的开源组件之一，结合了C3P0，DBCP的优点，并且自带日志监控！
     + Druid 可以天然的监控 SQL 和 数据库连接池的状况！
     + 配置参数
     [Github网址](https://github.com/alibaba/druid/wiki/DruidDataSource%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8)
     > 任何池化技术，道理都是想通的，配置参数达到更高的性能，思考的时候对比我们之前学习的线程池！
-+ 导入依赖
++ **导入依赖**
 ```java
 <dependency>
   <groupId>com.alibaba</groupId>
@@ -97,7 +97,7 @@ Java程序很大的一部分都是要操作数据库的，为了提高操作数�
   <version>1.2.17</version>
 </dependency>
 ```
-+ 配置数据源
++ **配置数据源**
 ```java
 spring:
   datasource:
@@ -128,7 +128,7 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 ```
-+ 配置数据日志监控！
++ **配置数据日志监控！**
 ```java
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -162,12 +162,12 @@ StatViewServlet(),"/druid/*");
     HashMap<String, String> map = new HashMap<>();
     //后台的登录用户名和密码
     map.put("loginUsername","admin");
-    map.put("loginPassword","123456");
+    map.put("loginPassword","root");
     // 访问权限
     // map.put("allow","localhost"); //只允许本机访问
     map.put("allow",""); // 所有人都可以访问
     // deny拒绝访问
-    // map.put("deny","192.168.1.1"); // ip会被拒绝访问
+    // map.put("deny","192.168.1146.137"); // ip会被拒绝访问
     bean.setInitParameters(map); //设置servlet的初始化参数
     return bean;
  }
@@ -187,6 +187,9 @@ StatViewServlet(),"/druid/*");
  }
 }
 ```
++ **测试**
+![druid-login](https://tvax2.sinaimg.cn/large/005DJQmOgy1gcxzwc5nq8j30yb0f3glw.jpg)
+![success-druid](https://tvax4.sinaimg.cn/large/005DJQmOgy1gcxzx00milj30wu0ljwfv.jpg)
 # 总结
 + 使用第三方数据源的思想
     1. 导入依赖
