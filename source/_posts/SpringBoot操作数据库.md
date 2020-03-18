@@ -102,7 +102,7 @@ Java程序很大的一部分都是要操作数据库的，为了提高操作数�
 spring:
   datasource:
     username: root
-    password: 123456
+    password: root
     #?serverTimezone=UTC解决时区的报错
     url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -190,9 +190,98 @@ StatViewServlet(),"/druid/*");
 + **测试**
 ![druid-login](https://tvax2.sinaimg.cn/large/005DJQmOgy1gcxzwc5nq8j30yb0f3glw.jpg)
 ![success-druid](https://tvax4.sinaimg.cn/large/005DJQmOgy1gcxzx00milj30wu0ljwfv.jpg)
+# 集成MyBatis
++ 官方文档
+    + [MyBatis](https://mybatis.org/mybatis-3/getting-started.html)
+    + [MyBatis-Spring](http://mybatis.org/spring/zh/factorybean.html)
+    + [MyBatis Spring Boot Starter](http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
+1. 导入依赖
+```yaml
+        <!--mybatis 是自己写的启动器不是官方的-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+ ```
+2. 编写实体类
+```java
+@Mapper // 表示这是一个MyBatis的Mapper
+@Repository  // dao层使用的
+public interface DepartmentMapper {
+  // @Select("sql") 注解版配置
+  // 获取所有的部门信息
+  List<Department> getDepartments();
+  // 通过id获取部门信息
+  Department getDepartment(Integer id);
+}
+```
+3. 编写Mapper.xml文件
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定接口-->
+<mapper namespace="com.dakuzai.mapper.DepartmentMapper">
+  <!--绑定接口中的方法-->
+  <select id="getDepartments" resultType="Department">
+   select * from department
+  </select>
+  <select id="getDepartment" resultType="Department">
+   select * from department where id = #{id}
+  </select>
+</mapper>
+```
+4. 测试
+```java
+@RestController
+public class DepartmentController {
+  @Autowired
+  DepartmentMapper departmentMapper;
+  // 查询全部部门
+  @GetMapping("/getDepartments")
+  public List<Department> getDepartments(){
+    return departmentMapper.getDepartments();
+ }
+  // 通过id获取部门信息
+  @GetMapping("/getDepartment/{id}")
+  public Department getDepartment(@PathVariable("id") Integer id){
+    return departmentMapper.getDepartment(id);
+ }
+}
+```
+5. 配置mybatis的配置项
+```xml
+# 配置mybatis的配置
+mybatis.configuration.map-underscore-to-camel-case=true
+mybatis.type-aliases-package=com.coding.pojo
+# mybatis.config-location=
+mybatis.mapper-locations=classpath:com/coding/mapper/xml/*.xml
+```
+6. Maven资源过滤问题
+```xml
+<resources>
+  <!-- 配置文件导出 -->
+  <resource>
+    <directory>src/main/java</directory>
+    <includes>
+      <include>**/*.xml</include>
+    </includes>
+    <filtering>true</filtering>
+  </resource>
+</resources>
+```
 # 总结
 + 使用第三方数据源的思想
     1. 导入依赖
     2. 看源码配置
     3. 看官方解释
     4. 测试使用！
++ MyBatis 使用
+    1. 导入依赖
+    2. 编写mybatis配置文件
+    3. 编写接口
+    4. 编写接口Mapper配置文件
+    5. 注册Mapper配置文件
+    6. 测试
