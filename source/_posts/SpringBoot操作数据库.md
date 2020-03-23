@@ -257,7 +257,7 @@ public class DepartmentController {
 mybatis.configuration.map-underscore-to-camel-case=true
 mybatis.type-aliases-package=com.coding.pojo
 # mybatis.config-location=
-mybatis.mapper-locations=classpath:com/coding/mapper/xml/*.xml
+mybatis.mapper-locations=classpath:com/dakuzai/mapper/xml/*.xml
 ```
 6. Maven资源过滤问题
 ```xml
