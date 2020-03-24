@@ -87,6 +87,7 @@ public View resolveViewName(String viewName, Locale locale) throws Exception { �
         } 
     }
  ```
+ 
  # 猜想
  既然他是从容器中加载所有的视图解析器，那么我们可以猜想，我们自己写一个视图解析器，也可以被 扫描并加载！
 
