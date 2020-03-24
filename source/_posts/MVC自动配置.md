@@ -2,6 +2,10 @@
 title: MVC自动配置
 date: 2020-03-24 19:06:15
 tags:
+    - SpringBoot
+    - SpringMVC
+categories: SpringBoot
+cover: https://tvax4.sinaimg.cn/large/005DJQmOgy1gcunne462aj30p00f93z3.jpg
 ---
 # 理解方式
 + 源码
