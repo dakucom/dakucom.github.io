@@ -96,7 +96,7 @@ tions()))
 ```java
 private static final String[] CLASSPATH_RESOURCE_LOCATIONS =
 {
-  "classpath:/META-INF/resources/", // 在 starter 中使用！ SWAGGER-UI
+"classpath:/META-INF/resources/", // 在 starter 中使用！ SWAGGER-UI
 "classpath:/resources/",  // 文件资源
 "classpath:/static/",   // 静态资源
 "classpath:/public/"    // 公共的，图标......
