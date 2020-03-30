@@ -92,18 +92,50 @@ public View resolveViewName(String viewName, Locale locale) throws Exception { �
  既然他是从容器中加载所有的视图解析器，那么我们可以猜想，我们自己写一个视图解析器，也可以被 扫描并加载！
 
 # 测试
-```java
-// 自己写一个 bean 
-@Bean 
-public ViewResolver myViewResolver(){
-        return new MyViewResolver(); 
-     }
-private static class MyViewResolver implements ViewResolver{    
-    @Override    
-    public View resolveViewName(String viewName, Locale locale) throws Exception {
-                return null;    
-         } 
++ 写一个自己的bean
+![myViewResolver](https://tvax2.sinaimg.cn/large/005DJQmOgy1gd606b23axj30p50botgy.jpg)
+    ```java
+    /**
+     * 自己编写一个bean，像容器中添加自己的一个组建
+     * ViewResolver：代表一个class
+     * myViewResolver：就是自己取得一个名字
+     * @return
+     */
+    @Bean
+    public ViewResolver myViewResolver(){
+        return new MyViewResolver();
     }
+
+    public static class MyViewResolver implements ViewResolver{
+
+        @Override
+        public View resolveViewName(String viewName, Locale locale) throws Exception {
+            return null;
+        }
+    }
+        ```
++ Debug测试查看
+![DispatcherServlet](https://tva1.sinaimg.cn/large/005DJQmOgy1gd6050ma8vj30ww0jiwxo.jpg)
+![Debug-viewResolvers](https://tvax2.sinaimg.cn/large/005DJQmOgy1gd60av4en6j30r00gjnb9.jpg)
+# 格式化转化器Formatter 
+```java
+@Bean
+@Override  
+// 服务 
+public FormattingConversionService mvcConversionService() {
+// 默认的时间 Formatting 的格式：    
+WebConversionService conversionService = new WebConversionService(this.mvcProperties.getDateFormat());    
+     addFormatters(conversionService);    
+     return conversionService; 
+     }
+```
+```java
+// 源码中默认的格式是通过 / 分割 
+/**     
+* Date format to use. For instance, `dd/MM/yyyy`.     
+*/ 
+private String dateFormat;
+// 只要在 mvcProperties 中的，我们都可以进行手动的配置！
 ```
  # 总结
 在SpringBoot中，如果我们想要使用自己定制化的东西，只需要给容器中添加这个组件就 好了！剩下的事情SpringBoot就会办公我们自动去做了！ 
