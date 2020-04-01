@@ -80,13 +80,13 @@ console.log(es6message)
 + 对象声明简写
 ```js
 //传统对象声明
-let name1 = 'hth1'
+let name1 = 'dakuzai'
 let age1 = 18
-let user1 = { name: name1, age: age1 }
-console.log(user1)
+let person = { name: name1, age: age1 }
+console.log(person)
 
-//es6简写 对象属性名会被定义成与变量名相同
-let name = 'hth'
+//es6简写(语法糖) 对象属性名会被定义成与变量名相同
+let name = 'dakuzai'
 let age = 18
 let user = { name, age }
 console.log(user)
