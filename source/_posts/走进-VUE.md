@@ -24,8 +24,10 @@ cover: https://tvax1.sinaimg.cn/large/005DJQmOgy1gdee3ujgytj30et08cguc.jpg
 4. 下载需要的基本插件，如图： 
 ![基本插件](https://tvax1.sinaimg.cn/large/005DJQmOgy1gdeelxzhdnj30oq0jcwft.jpg)
 # Nodejs
-+ 什么是Node.js
-是一个基于 Chrome V8 引擎的 JavaScript 运行环境,说白了就是运行在服务端的JavaScript;可以这么说，NodeJS 带来了全栈时代。
++ [官网下载](http://nodejs.cn/)
++ 什么是Node.js(前端运行时环境)：
+    是一个基于 Chrome V8 引擎的 JavaScript 运行环境,说白了就是运行在服务端的JavaScript;可以这么说，NodeJS 带来了全栈时代。
++ 需要安装python环境（最好安装python2，因为python2和python3有很大区别）
 # NPM包管理
 + 我们安装nodejs的时候，就有了 npm 的环境！
     > C:\Users\Administrator>npm -v 6.13.4
@@ -157,9 +159,14 @@ f3('如果只有一行代码，可省略{}')
     Webpack 是一个前端的资源、打包工具！
 + webpack 安装
     1. 安装
-    > npm install -g webpack webpack-cli
+    ```bash
+    npm install -g webpack webpack-cli
+    ```
     2. 查看版本信息
-    > webpack -v
+    ```bash
+    webpack -v
+    ```
+    ![安装图片](https://tvax3.sinaimg.cn/large/005DJQmOgy1gdeiorss9aj30qm098jri.jpg)
     3. 初始化项目
     
 # MVVM模式
@@ -248,6 +255,8 @@ f3('如果只有一行代码，可省略{}')
         }
     )
     ```
+# VUE
+[官网](https://cn.vuejs.org/)
 # VUE 的生命周期
 ![VUE生命周期](https://tvax4.sinaimg.cn/large/005DJQmOgy1gdehr00lyqj30xc2cftaj.jpg)
 1. 生命周期钩子函数:钩子函数就是在做某些事件的时候去调用的函数
@@ -353,4 +362,4 @@ npm install vue-cli -g
 </html>
 ```
 3. 安装成功后，检测
-![检测](https://tvax1.sinaimg.cn/large/005DJQmOgy1gdeibc0iexj314j08yt95.jpg)
+![检测](https://tvax3.sinaimg.cn/large/005DJQmOgy1gdem985rm4j30os07sdfu.jpg)
