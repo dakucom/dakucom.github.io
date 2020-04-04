@@ -36,15 +36,20 @@ cover: https://tvax1.sinaimg.cn/large/005DJQmOgy1gdee3ujgytj30et08cguc.jpg
     NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布
     Node模块（包）的标准。就好比maven，所有东西只要到导入依赖即可，npm 也是如此，npm
 install，好比Linux 的 yum 安装！
-# VUE开发时使用ES6语法
+# VUE开发时使用***ES6语法***
 其实就是一个规范而已！ JavaScript的下一代标准！ES6 = ES2015 = ECMAScript6！
 1. let 声明变量！
     + var与let的区别
         + 与var不同，var声明变量是能够全局使用的，而let声明的变量为**私有变量**，是**局部**的;
+        ![let有作用域](https://tva2.sinaimg.cn/large/005DJQmOgy1gdggvi5e5uj30kz0i9jru.jpg)
         + var可以声明多次，但let 变量**不能重复声明**，不然会报错。
+        ![let变量不能重复声明](https://tva3.sinaimg.cn/large/005DJQmOgy1gdgh3038pyj30ik0dxt92.jpg)
         + var声明的对象会提升对象的作用域，而let声明的对象不会。
+        ![let声明的对象不会提升作用域](https://tva2.sinaimg.cn/large/005DJQmOgy1gdgh8bg19qj30ha0eowev.jpg)
 2. 常量变化
 一旦使用const声明了常量，这个常量就不允许再改变了，且声明时必须同时赋值。
+![const](https://tvax2.sinaimg.cn/large/005DJQmOgy1gdhs0sq1zuj30kg0h074o.jpg)
+![const](https://tvax4.sinaimg.cn/large/005DJQmOgy1gdhs3e92rlj30nt0k5gm5.jpg)
 3. 解构赋值，ES6更加优雅的赋值方式
 ```js
 //传统赋值
@@ -66,17 +71,21 @@ console.log('传统对象赋值：', name1, age1)
 let { name, age } = user
 console.log('解构对象赋值：', name, age)
 ```
+![const](https://tvax2.sinaimg.cn/large/005DJQmOgy1gdhsovbx0bj30j30fjq3p.jpg)
 4. 模板字符串
 ```js
 let name = 'dakuzai'
 let age = 18
-// 传统的，大家的习惯！  ${}
-let message = 'name:' + name + 'age:' + age; 
 // 拼接字符串
-// es6模板字符串拼接,字符串引号需要改为 ``
+// 传统的，大家的习惯！ 
+let message = 'name:' + name + 'age:' + age; 
+console.log(message)
+//模板字符串拼接  ${}
+// es6模板字符串拼接,字符串引号需要改为: ` `
 let es6message = `name: ${name} age:${age}` 
 console.log(es6message)
 ```
+![const](https://tva2.sinaimg.cn/large/005DJQmOgy1gdhsr2msv7j30e70faweu.jpg)
 + 对象声明简写
 ```js
 //传统对象声明
@@ -91,6 +100,7 @@ let age = 18
 let user = { name, age }
 console.log(user)
 ```
+![const](https://tvax4.sinaimg.cn/large/005DJQmOgy1gdhst0lbj7j30gt0f074p.jpg)
 + 定义方法简写
 ```js
 const person = {
@@ -108,6 +118,7 @@ const ES6person = {
 }
 ES6person.sayHi();
 ```
+![const](https://tva4.sinaimg.cn/large/005DJQmOgy1gdht1up4jmj30mi0fdgm3.jpg)
 + 对象拓展运算符
 ```js
 let person = { name: 'dakzuai', age: 18 }
@@ -115,10 +126,9 @@ let person = { name: 'dakzuai', age: 18 }
 let personCopyReference = person
 //修改名称
 personCopyReference.name = 'peng'
-console.log('原对象', user.name)
 console.log('复制引用后的新对象', personCopyReference.name)
 
-//对象深度拷贝
+//对象深度拷贝  ...是拓展运算符
 let user = { name: 'dakzuai', age: 18 }
 let userCopyProperty = { ...user }
 //修改名称
@@ -126,6 +136,7 @@ userCopyProperty.name = '666'
 console.log('原对象', user.name)
 console.log('深度拷贝后的新对象', userCopyProperty.name)
 ```
+![const](https://tva1.sinaimg.cn/large/005DJQmOgy1gdhtdkdwpcj30ie0h0jrz.jpg)
 + 默认的参数
 ```js
 function showInfo(name, age = 18) {
@@ -133,10 +144,11 @@ function showInfo(name, age = 18) {
 }
 // 测试
 showInfo('dakuzai', 18)
-showInfo('dakuzai')
-showInfo('dakuzai', undefined)
+showInfo('dakuzai')//走默认
+showInfo('dakuzai', undefined)//走默认
 showInfo('dakuzai', null)
 ```
+![const](https://tva3.sinaimg.cn/large/005DJQmOgy1gdhteqkrupj30lm0e8mxf.jpg)
 + 箭头函数(参数 => 函数体),类似Lombda表达式
 ```js
 const f1 = function () {
@@ -151,8 +163,9 @@ const f3 = (str) => console.log(str)
 f2()
 f3('如果只有一行代码，可省略{}')
 ```
+![cosnt](https://tva1.sinaimg.cn/large/005DJQmOgy1gdhtflrjf2j30ma0dymxh.jpg)
 + 小结：
-未来，前端代码的底层大量可以看见这些代码，尤其是对接后端接口api
+未来，前端代码的底层大量可以看见这些代码，尤其是对接后端接口api。es6是一个非常人性化的语法，非常优雅，和后端开发接近。
 # Webpack
 + 什么是 Webpack
 
