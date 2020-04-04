@@ -324,14 +324,11 @@ webpack -v
 module.exports = {
   // 提供 mode 配置选项，告知 webpack 使用相应模式的内置优化
   mode: 'production',
-  // 基础目录，绝对路径，用于配置中解析入口起点（entry point）和 loader 默认使用当前目录，
-但是推荐在配置中传递一个值
+  // 基础目录，绝对路径，用于配置中解析入口起点（entry point）和 loader 默认使用当前目录，但是推荐在配置中传递一个值
   context: 'C:\\project\\vueTest',
-  // 此选项控制是否生成，以及如何生成 source map 使用 SourceMapDevToolPlugin 进行更细
-粒度的配置。查看 source-map-loader 来处理已有的 source map
+  // 此选项控制是否生成，以及如何生成 source map 使用 SourceMapDevToolPlugin 进行更细粒度的配置。查看 source-map-loader 来处理已有的 source map
   devtool: false,
-  // 此选项可以配置是否polyfill或mock某些Node.js全局变量和模块。这可以使最初为Node.js环
-境编写的代码。在其他环境中允许
+  // 此选项可以配置是否polyfill或mock某些Node.js全局变量和模块。这可以使最初为Node.js环境编写的代码。在其他环境中允许
   node: {
     setImmediate: false,
     process: 'mock',
@@ -356,8 +353,7 @@ module.exports = {
 output.filename 选项。
     chunkFilename: 'js/[name].[contenthash:8].js'
  },
-  //解析 配置模块如何解析，例如，挡在ES2015中调用import "loadsh",resolve选项能够对
-webpack查找“loadsh”的方式取做修改
+  //解析 配置模块如何解析，例如，挡在ES2015中调用import "loadsh",resolve选项能够对webpack查找“loadsh”的方式取做修改
   resolve: {
     // 创建import或require的别名，来确保模块引入变得简单、例如，一些位于 src/ 文件夹下
 的常用模块：
@@ -399,20 +395,17 @@ service\\node_modules'
  },
   // 模块 module 决定了 如何处理项目中的不同类型的模块
   module: {
-    // 防止webpakc解析哪些任何与给定正则表达式匹配的文件。忽略的文件中不应该含有
-important,require,define的调用，或任何其他导入机制忽略大型的libaray可以提高构建性能
+    // 防止webpakc解析哪些任何与给定正则表达式匹配的文件。忽略的文件中不应该含有important,require,define的调用，或任何其他导入机制忽略大型的libaray可以提高构建性能
     noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
     // 模块规格 （匹配loader，解析器等选项）
-    // loaders webpack可以使用loader来预处理文件。这允许你打包除javascript之外的任何
-静态资源,你可以使用node.js来更简单的编写自己的loader
+    // loaders webpack可以使用loader来预处理文件。这允许你打包除javascript之外的任何静态资源,你可以使用node.js来更简单的编写自己的loader
     rules: [
       /* config.module.rule('vue') */
      {
         test: /\.vue$/,
         use: [
          {
-            // 有一些性能开销较大的loader之前添加此loader,可以将结果缓存到磁
-盘里
+            // 有一些性能开销较大的loader之前添加此loader,可以将结果缓存到磁盘里
             loader: 'cache-loader',
             options: {
               cacheDirectory:
@@ -424,15 +417,11 @@ important,require,define的调用，或任何其他导入机制忽略大型的li
             // 以及 `.vue` 文件中的 `<script>` 块
             loader: 'vue-loader',
             options: {
-              // 模板编译器的选项。当使用默认的 vue-template-compiler 的
-时候，你可以使用这个选项来添加自定义编译器指令、模块或通过 { preserveWhitespace: false } 放
-弃模板标签之间的空格。
+              // 模板编译器的选项。当使用默认的 vue-template-compiler 的时候，你可以使用这个选项来添加自定义编译器指令、模块或通过 { preserveWhitespace: false } 放弃模板标签之间的空格。
               compilerOptions: {
                 preserveWhitespace: false
              },
-              // 模板编译器的选项。当使用默认的 vue-template-compiler 的
-时候，你可以使用这个选项来添加自定义编译器指令、模块或通过 { preserveWhitespace: false } 放
-弃模板标签之间的空格。
+              // 模板编译器的选项。当使用默认的 vue-template-compiler 的时候，你可以使用这个选项来添加自定义编译器指令、模块或通过 { preserveWhitespace: false } 放弃模板标签之间的空格。
               cacheDirectory:
 'C:\\project\\vueTest\\node_modules\\.cache\\vue-loader',
               cacheIdentifier: 'c12e2af6'
@@ -560,8 +549,7 @@ important,require,define的调用，或任何其他导入机制忽略大型的li
                 loader: 'css-loader',
                 options: {
                   sourceMap: false, // 启用/禁用 CSS 模块
-                  importLoaders: 2, // 在 css-loader 前应用的
-loader 的数量
+                  importLoaders: 2, // 在 css-loader 前应用的loader 的数量
                   modules: true, // 启用/禁用 CSS 模块
                   localIdentName:
 '[name]_[local]_[hash:base64:5]'
@@ -615,8 +603,7 @@ loader 的数量
                }
              },
              {
-                // 解释（interpret） @import 和 url(). 会
-import/require()后再解析它们
+                // 解释（interpret） @import 和 url(). 会import/require()后再解析它们
                 // 引用合适的loader是file-loader和url-loader
                 loader: 'css-loader',
                 options: {
@@ -1378,8 +1365,7 @@ to transpile
          }
        ],
          use: [
-         {  // 在一些性能开销较大的 loader 之前添加此 loader，以将结果缓存到
-磁盘里。
+         {  // 在一些性能开销较大的 loader 之前添加此 loader，以将结果缓存到磁盘里。
             loader: 'cache-loader',
             options: {
               cacheDirectory:
@@ -1388,10 +1374,8 @@ to transpile
            }
          },
          {
-            // 把这个 loader 放置在其他 loader 之前， 放置在这个 loader 之
-后的 loader 就会在一个单独的 worker 池(worker pool)中运行
-            // 每个 worker 都是一个单独的有 600ms 限制的 node.js 进程。同时
-跨进程的数据交换也会被限制。
+            // 把这个 loader 放置在其他 loader 之前， 放置在这个 loader 之后的 loader 就会在一个单独的 worker 池(worker pool)中运行
+            // 每个 worker 都是一个单独的有 600ms 限制的 node.js 进程。同时跨进程的数据交换也会被限制。
             loader: 'thread-loader'
          },
          {  // 这个包允许使用Babel和webpack传输JavaScript文件。
@@ -1525,8 +1509,7 @@ fixableErrors, fixableWarnings);
   // webpack插件列表
   plugins: [
     /* config.plugin('vue-loader') */
-    // 它的职责是将你定义过的其它规则复制并应用到 .vue 文件里相应语言的块。例如，如果你有
-一条匹配 /\.js$/ 的规则，那么它会应用到 .vue 文件里的 <script> 块
+    // 它的职责是将你定义过的其它规则复制并应用到 .vue 文件里相应语言的块。例如，如果你有一条匹配 /\.js$/ 的规则，那么它会应用到 .vue 文件里的 <script> 块
     new VueLoaderPlugin(),
     /* config.plugin('define') */
     // DefinePlugin 中 process.env 键的简写方式。
@@ -1540,9 +1523,7 @@ fixableErrors, fixableWarnings);
      }
    ),
     /* config.plugin('case-sensitive-paths') */
-    // 这个Webpack插件强制所有必需模块的完整路径与磁盘上实际路径的精确情况匹配。使用这个
-插件可以帮助缓解在OSX上工作的开发人员与其他开发人员发生冲突，或者构建运行其他操作系统的机器，这
-些操作系统需要正确使用大小写的路径。
+    // 这个Webpack插件强制所有必需模块的完整路径与磁盘上实际路径的精确情况匹配。使用这个插件可以帮助缓解在OSX上工作的开发人员与其他开发人员发生冲突，或者构建运行其他操作系统的机器，这些操作系统需要正确使用大小写的路径。
     new CaseSensitivePathsPlugin(),
     /* config.plugin('friendly-errors') */
      // 识别某些类的webpack错误并清理、聚合和优先化它们，以提供更好的开发人员体验。
@@ -1685,9 +1666,7 @@ compilation.getStats().toJson())
      }
    ),
     /* config.plugin('prefetch') */
-    // 预取出普通的模块请求(module request)，可以让这些模块在他们被 import 或者是
-require 之前就解析并且编译。使用这个预取插件可以提升性能。可以多试试在编译前记录时间(profile)
-来决定最佳的预取的节点。
+    // 预取出普通的模块请求(module request)，可以让这些模块在他们被 import 或者是require 之前就解析并且编译。使用这个预取插件可以提升性能。可以多试试在编译前记录时间(profile)来决定最佳的预取的节点。
     new PreloadPlugin(
      {
         rel: 'prefetch',
