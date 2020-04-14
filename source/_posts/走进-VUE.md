@@ -1896,6 +1896,7 @@ npm install vue-cli -g
  });
   var vm = new Vue({
     el: '#app',
+   // router:router (缩写如果，同名的话)  
     router
  })
 </script>
