@@ -158,3 +158,4 @@ public interface UserMapper extends BaseMapper<User> {
 + 主键策略生成
 ## 复杂时，编写Wapper条件构造器即可！
 ## 所以说，70%以上的业务都可以自动实现，抛开了底层dao层，可以让我们更加专心的写controller层的逻辑。
+## MP是让我们可以通过面向对象的方式编写SQL

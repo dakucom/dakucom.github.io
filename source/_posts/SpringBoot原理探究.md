@@ -303,3 +303,4 @@ Run方法思维参考图（特别感谢“狂神说”公众号）：
         3. 我们的配置文件之所以可以自动配置生效：xxxxAutoConfiguation ： 自动配置类，根据条件 @ConditionalOnXX 判断是否生效；如果生效则成功注入bean；
         xxxxProperties：封装配置文件中的相关属性；
         4. 给容器中自动配置类配置属性的时候，会通过 xxxxProperties 类来获取某用户配置文件中的属性，如果没有则使用默认的，如果有则使用 自动配置的！
+        5. SpringBoot封装了配置，而不是去除了配置。
